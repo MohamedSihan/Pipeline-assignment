@@ -1,0 +1,22 @@
+name: Run Jest Tests
+
+on: [push, pull_request]  # Trigger this workflow on push or pull request events
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu environment to run the tests
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3  # Check out your repository's code so the next steps can access it
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3  # Set up Node.js on the runner (GitHub's virtual machine)
+        with:
+          node-version: '18'  # Specify the version of Node.js to use (adjust based on your project)
+
+      - name: Install dependencies
+        run: npm install  # Install the project's dependencies
+
+      - name: Run Jest tests
+        run: npm test  # Run the tests using npm test
